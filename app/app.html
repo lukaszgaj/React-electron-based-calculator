@@ -1,0 +1,18 @@
+<!doctype>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    {
+      const script = document.createElement('script');
+      const port = process.env.PORT || 3000;
+      script.src = (process.env.HOT)
+        ? 'http://localhost:' + port + '/dist/bundle.js'
+        : './dist/bundle.js';
+      document.body.appendChild(script);
+    }
+  </script>
+</html>
