@@ -47,7 +47,10 @@ module.exports = merge(baseConfig, {
           'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ]
       },
-
+      {
+        test: /\.sass$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"]
+    },
       // Add SASS support  - compile all .global.scss files and pipe it to style.css
       {
         test: /\.global\.scss$/,
