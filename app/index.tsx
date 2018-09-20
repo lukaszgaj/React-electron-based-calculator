@@ -1,4 +1,5 @@
 import * as React from 'react';
 import {render} from 'react-dom';
+import {Calculator} from './components/Calculator/Calculator';
 
-render(<div>It's working omg!</div>, document.getElementById("app"));
+render(<Calculator></Calculator>, document.getElementById('root'));

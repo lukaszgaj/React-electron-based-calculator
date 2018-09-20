@@ -1,14 +1,10 @@
 {
-  "name": "electron-react-typescript-boilerplate",
-  "productName": "ElectronReactTypescript",
-  "version": "0.10.0",
-  "description": "Electron application boilerplate based on TypeScript, React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "electron-react-based-calculator",
+  "productName": "ElectronReactBasedCalculator",
+  "version": "1.0.0-alpha",
+  "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runTests.js",
-    "test-all": "npm run test && npm run build && npm run test-e2e",
-    "test-watch": "npm test -- --watch",
-    "test-e2e": "cross-env NODE_ENV=test node --trace-warnings ./test/runTests.js e2e",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
     "build-main": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
@@ -45,8 +41,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReactTypescript",
-    "appId": "io.github.irath96.ElectronReactTypescript",
+    "productName": "ElectronReactBasedCalculator",
+    "appId": "io.github.irath96.ElectronReactBasedCalculator",
     "dmg": {
       "contents": [
         {
@@ -87,18 +83,8 @@
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/irath96/electron-react-typescript-boilerplate.git"
-  },
   "author": {
-    "name": "Alexander Rath",
-    "email": "irath96@gmail.com",
-    "url": "https://github.com/irath96"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/irath96/electron-react-typescript-boilerplate/issues"
+    "name": "Lukasz"
   },
   "keywords": [
     "electron",
@@ -109,7 +95,6 @@
     "webpack",
     "react-hot"
   ],
-  "homepage": "https://github.com/irath96/electron-react-typescript-boilerplate#readme",
   "devDependencies": {
     "@types/enzyme": "^3.1.1",
     "@types/history": "^4.5.2",
@@ -130,23 +115,25 @@
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "css-modules-require-hook": "^4.0.6",
+    "decimal.js": "^10.0.1",
     "devtron": "^1.4.0",
     "electron": "1.8.4",
     "electron-builder": "^19.8.0",
     "electron-builder-http": "^19.15.0",
     "electron-devtools-installer": "^2.0.1",
     "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.24.1",
     "identity-obj-proxy": "^3.0.0",
+    "inversify": "^4.13.0",
     "jest": "^22.0.4",
     "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-test-renderer": "^16.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
     "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.6",
     "sinon": "^4.0.0",
