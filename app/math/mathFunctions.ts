@@ -6,10 +6,10 @@ export const inputDigit = (obj: any, buttonName: string) => {
     }
 
     if (buttonName !== '0' && obj.temp === '0') {
-        return { temp: buttonName }
+        return {temp: buttonName}
     }
 
-    if (obj.operation === 'V' || obj.operation === '%') {
+    if (obj.operation === 'V' || obj.operation === '%' || obj.operation === '=') {
         return {
             currentValue: null,
             temp: buttonName,
@@ -19,9 +19,9 @@ export const inputDigit = (obj: any, buttonName: string) => {
 
     if (obj.operation) {
         if (obj.temp) {
-            return { temp: obj.temp + buttonName };
+            return {temp: obj.temp + buttonName};
         }
-        return { temp: buttonName };
+        return {temp: buttonName};
     }
 
     if (obj.temp) {
@@ -158,13 +158,12 @@ export const countPercent = (obj: any, buttonName: string) => {
 
 export const inputDot = (obj: any) => {
     if (obj.temp) {
-        // ignore a . if the next number already has one
         if (obj.temp.includes('.')) {
             return obj;
         }
-        return { temp: obj.temp + '.' };
+        return {temp: obj.temp + '.'};
     }
-    return { temp: '0.' };
+    return {temp: '0.'};
 }
 
 export const inputEquals = (obj: any, buttonName: string) => {
@@ -187,10 +186,10 @@ export const inputEquals = (obj: any, buttonName: string) => {
 
 export const inputNegate = (obj: any) => {
     if (obj.temp) {
-        return { temp: (-1 * parseFloat(obj.temp)).toString() };
+        return {temp: (-1 * parseFloat(obj.temp)).toString()};
     }
     if (obj.currentValue) {
-        return { currentValue: (-1 * parseFloat(obj.currentValue)).toString() };
+        return {currentValue: (-1 * parseFloat(obj.currentValue)).toString()};
     }
     return obj;
 }
