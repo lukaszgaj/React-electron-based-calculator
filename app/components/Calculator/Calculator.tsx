@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ButtonsContainer} from './ButtonsContainer/ButtonsContainer';
 import {Display} from './Display/Display';
-import * as DecimalBasedMathFunctions from '../../math/mathFunctions';
+import {inputDigit, countSqrt, countPercent, inputDot, equal, negate, mathOperation} from '../../math/mathFunctions';
 const style = require('./Calculator.scss');
 
 interface IProps {
@@ -25,7 +25,7 @@ export class Calculator extends React.Component<IProps, IState> {
 
     handleClick = (buttonName: string, isOperator: boolean) => {
         if (!isOperator) {
-            this.setState(DecimalBasedMathFunctions.inputDigit(this.state, buttonName));
+            this.setState(inputDigit(this.state, buttonName));
         } else {
             switch (buttonName) {
                 case 'C':
@@ -37,29 +37,29 @@ export class Calculator extends React.Component<IProps, IState> {
                     break;
 
                 case 'V':
-                    this.setState(DecimalBasedMathFunctions.countSqrt(this.state, buttonName));
+                    this.setState(countSqrt(this.state, buttonName));
                     break;
 
                 case '%':
-                    this.setState(DecimalBasedMathFunctions.countPercent(this.state, buttonName));
+                    this.setState(countPercent(this.state, buttonName));
                     break;
 
                 case '.':
-                    this.setState(DecimalBasedMathFunctions.inputDot(this.state));
+                    this.setState(inputDot(this.state));
                     break;
 
                 case '=':
-                    this.setState(DecimalBasedMathFunctions.inputEquals(this.state, buttonName));
+                    this.setState(equal(this.state, buttonName));
                     break;
 
                 case '+/-':
-                    this.setState(DecimalBasedMathFunctions.inputNegate(this.state));
+                    this.setState(negate(this.state));
                     break;
 
                 default:
                     if (this.state.operation) {
                         this.setState({
-                            currentValue: DecimalBasedMathFunctions.operate(this.state.currentValue, this.state.temp, this.state.operation),
+                            currentValue: mathOperation(this.state.currentValue, this.state.temp, this.state.operation),
                             temp: null,
                             operation: buttonName,
                         });
@@ -81,7 +81,7 @@ export class Calculator extends React.Component<IProps, IState> {
         console.log(this.state);
         switch (key) {
             case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case '0':
-                this.setState(DecimalBasedMathFunctions.inputDigit(this.state, key));
+                this.setState(inputDigit(this.state, key));
                 break;
 
             case 'Delete': case 'c':
@@ -105,26 +105,26 @@ export class Calculator extends React.Component<IProps, IState> {
                 break;
 
             case 'v':
-                this.setState(DecimalBasedMathFunctions.countSqrt(this.state, 'V'));
+                this.setState(countSqrt(this.state, 'V'));
                 break;
 
             case '.':
-                this.setState(DecimalBasedMathFunctions.inputDot(this.state));
+                this.setState(inputDot(this.state));
                 break;
 
             case '%':
-                this.setState(DecimalBasedMathFunctions.countPercent(this.state, key));
+                this.setState(countPercent(this.state, key));
                 break;
 
             case 'Enter': case '=':
-                this.setState(DecimalBasedMathFunctions.inputEquals(this.state, '='));
+                this.setState(equal(this.state, '='));
                 break;
 
             default:
                 if (key === '*') key = 'x';
                 if (this.state.operation) {
                     this.setState({
-                        currentValue: DecimalBasedMathFunctions.operate(this.state.currentValue, this.state.temp, this.state.operation),
+                        currentValue: mathOperation(this.state.currentValue, this.state.temp, this.state.operation),
                         temp: null,
                         operation: key,
                     });

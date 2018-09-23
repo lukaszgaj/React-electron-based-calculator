@@ -37,7 +37,7 @@ export const inputDigit = (obj: any, buttonName: string) => {
     };
 }
 
-export const operate = (numberOne: string, numberTwo: string, operation: string) => {
+export const mathOperation = (numberOne: string, numberTwo: string, operation: string) => {
     if (operation === '%') {
         return numberTwo ? numberTwo : numberOne;
     }
@@ -90,9 +90,9 @@ export const countSqrt = (obj: any, buttonName: string) => {
 
 export const countPercent = (obj: any, buttonName: string) => {
     if (obj.operation && obj.temp) {
-        let result = operate(obj.currentValue, obj.temp, obj.operation);
+        let result = mathOperation(obj.currentValue, obj.temp, obj.operation);
         if (!obj.currentValue) {
-            result = operate(obj.temp, obj.temp, obj.operation);
+            result = mathOperation(obj.temp, obj.temp, obj.operation);
         }
         return {
             currentValue: new Decimal(result)
@@ -103,7 +103,7 @@ export const countPercent = (obj: any, buttonName: string) => {
         };
     }
     if (obj.operation && obj.currentValue) {
-        let result = operate(obj.currentValue, obj.temp, obj.operation);
+        let result = mathOperation(obj.currentValue, obj.temp, obj.operation);
         if (!obj.temp && obj.operation === 'x') {
             result = new Decimal(result).times(new Decimal(result)).toString();
             return {
@@ -166,16 +166,16 @@ export const inputDot = (obj: any) => {
     return {temp: '0.'};
 }
 
-export const inputEquals = (obj: any, buttonName: string) => {
+export const equal = (obj: any, buttonName: string) => {
     if (obj.temp && obj.operation && obj.operation !== '=') {
         return {
-            currentValue: operate(obj.currentValue, obj.temp, obj.operation),
+            currentValue: mathOperation(obj.currentValue, obj.temp, obj.operation),
             temp: null,
             operation: buttonName,
         };
     } else if (obj.currentValue && obj.operation && obj.operation !== '=') {
         return {
-            currentValue: operate(obj.currentValue, obj.temp, obj.operation),
+            currentValue: mathOperation(obj.currentValue, obj.temp, obj.operation),
             temp: null,
             operation: buttonName,
         };
@@ -184,7 +184,7 @@ export const inputEquals = (obj: any, buttonName: string) => {
     }
 }
 
-export const inputNegate = (obj: any) => {
+export const negate = (obj: any) => {
     if (obj.temp) {
         return {temp: (-1 * parseFloat(obj.temp)).toString()};
     }

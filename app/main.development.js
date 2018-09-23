@@ -40,7 +40,7 @@ app.on('ready', () =>
     installExtensions()
         .then(() => {
             mainWindow = new BrowserWindow({
-                resizable: true,
+                resizable: false,
                 show: false,
                 width: 410,
                 height: 430
